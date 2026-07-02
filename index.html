@@ -4,95 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Ego Test ($1) - Premium Matrix</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@600;800&family=Vazirmatn:wght@600;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2 family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@600;800&family=Vazirmatn:wght@600;800&display=swap" rel="stylesheet">
+
     <!-- html2canvas بۆ داونلۆدکردنی بڕوانامەکە -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.3s ease; }
-        
-        body { 
-            background-color: #000000; 
-            color: #ffffff; 
-            font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
-            padding: 20px; 
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
         }
-        
-        .language-switcher { 
-            display: flex; 
-            background-color: #111111; 
-            border-radius: 30px; 
-            padding: 5px; 
-            margin-bottom: 25px; 
-            border: 1px solid #222222; 
+
+        .language-switcher {
+            display: flex;
+            background-color: #111111;
+            border-radius: 30px;
+            padding: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #222222;
             width: fit-content;
         }
-        
-        .lang-btn { 
-            background: none; 
-            border: none; 
-            color: #888888; 
-            padding: 10px 24px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            border-radius: 25px; 
-            font-weight: 600; 
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #888888;
+            padding: 10px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: 600;
         }
-        
+
         .lang-btn.active { background-color: #ffffff; color: #000000; }
-        
-        .container { 
-            text-align: center; 
-            max-width: 460px; 
-            width: 100%; 
-            background-color: #050505; 
-            padding: 35px 25px; 
-            border-radius: 24px; 
-            border: 1px solid #161616; 
-            box-shadow: 0 10px 50px rgba(0,0,0,0.9); 
+
+        /* ژمارەی زیندووی بەشداربوان */
+        .live-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #cccccc;
         }
-        
+        .live-dot {
+            width: 8px; height: 8px; border-radius: 50%; background-color: #10b981;
+            animation: pulseDot 1.4s infinite;
+        }
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+            100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+        }
+        .live-counter .num { color: #10b981; }
+
+        .container {
+            text-align: center;
+            max-width: 460px;
+            width: 100%;
+            background-color: #050505;
+            padding: 35px 25px;
+            border-radius: 24px;
+            border: 1px solid #161616;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.9);
+        }
+
         h1.top-title { font-family: 'Vazirmatn', 'Cinzel', serif; font-size: 32px; font-weight: 900; margin-bottom: 25px; color: #ffffff; }
         h2.section-title { font-size: 24px; font-weight: 800; margin-bottom: 15px; color: #ffffff; }
-        
+
         .description { font-size: 15px; color: #778899; margin-bottom: 30px; line-height: 1.6; font-weight: 600; }
-        
-        .name-input, .hash-input { 
-            width: 100%; 
-            padding: 18px; 
-            background-color: #0d0d0d; 
-            border: 1px solid #222222; 
-            border-radius: 14px; 
-            color: #ffffff; 
-            font-size: 15px; 
-            text-align: center; 
-            outline: none; 
-            margin-bottom: 25px; 
+
+        .name-input, .hash-input {
+            width: 100%;
+            padding: 18px;
+            background-color: #0d0d0d;
+            border: 1px solid #222222;
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 15px;
+            text-align: center;
+            outline: none;
+            margin-bottom: 25px;
         }
-        
-        .primary-btn { 
-            background-color: #ffffff; 
-            color: #000000; 
-            border: none; 
-            padding: 18px 40px; 
-            font-size: 16px; 
-            font-weight: 800; 
-            border-radius: 14px; 
-            cursor: pointer; 
-            width: 100%; 
+
+        .primary-btn {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 800;
+            border-radius: 14px;
+            cursor: pointer;
+            width: 100%;
             margin-bottom: 15px;
         }
-        
+
         .primary-btn:hover { background-color: #e0e0e0; }
+        .primary-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .pay-media-box {
             display: flex;
@@ -151,6 +177,22 @@
             font-weight: bold;
         }
 
+        /* کاونتداون تایمەر */
+        .countdown-box {
+            background: linear-gradient(135deg, #1a0808, #0d0d0d);
+            border: 1px solid #3d1414;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+        .countdown-label {
+            font-size: 12px; color: #ff8888; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+        }
+        .countdown-timer {
+            font-size: 26px; font-weight: 900; color: #ffffff; font-family: monospace; letter-spacing: 2px;
+        }
+        .countdown-timer span.unit { font-size: 11px; color: #888; letter-spacing: 0; display: block; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: -3px; }
+
         .leaderboard-box { margin-top: 30px; border-top: 1px solid #151515; padding-top: 20px; text-align: right; }
         .leaderboard-head { font-size: 14px; color: #ffffff; margin-bottom: 15px; font-weight: 800; }
         .leaderboard-row { display: flex; justify-content: space-between; font-size: 13px; color: #888888; margin-bottom: 8px; font-family: monospace; }
@@ -166,7 +208,7 @@
             font-size: 65px;
             position: relative;
         }
-        
+
         .sticker-fire {
             position: absolute;
             font-size: 45px;
@@ -182,7 +224,7 @@
         .fade-out-effect {
             animation: slowFadeOut 6s forwards;
         }
-        
+
         @keyframes slowFadeOut {
             0% { opacity: 1; transform: scale(1); }
             100% { opacity: 0.02; transform: scale(0.8); filter: blur(2px); }
@@ -197,24 +239,192 @@
         .progress-bar { width: 100%; height: 5px; background-color: #111111; margin-bottom: 25px; border-radius: 3px; overflow: hidden; }
         .progress-fill { height: 100%; background-color: #ffffff; width: 0%; }
 
-        /* بڕوانامەی پریمیۆم جیهانی */
-        .certificate-container { width: 100%; background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; padding: 20px; border-radius: 8px; border: 12px solid #0f2d59; position: relative; margin-bottom: 25px; }
-        .cert-inner { background-color: rgba(255, 255, 255, 0.94); color: #111111; padding: 30px 20px; border: 3px double #d4af37; text-align: center; }
+        /* 👑 ڕێکخستنی بڕوانامەی چوارگۆشەیی ستونی ڕێک بەپێی وێنەی image_3.png */
+        .certificate-container { 
+            width: 100%; 
+            background-image: radial-gradient(circle at 30% 20%, #2a4a7a 0%, #16305c 40%, #0f2d59 100%), repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 8px); 
+            background-blend-mode: overlay; 
+            background-size: cover; 
+            background-position: center; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 12px solid #0f2d59; 
+            position: relative; 
+            margin-bottom: 25px; 
+        }
+        .cert-inner { background-color: rgba(255, 255, 255, 0.94); color: #111111; padding: 35px 20px; border: 3px double #d4af37; text-align: center; }
         .cert-flags { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; font-size: 22px; }
-        .cert-header { font-family: 'Cinzel', serif; font-size: 30px; font-weight: 900; color: #0f2d59; }
+        .cert-header { font-family: 'Cinzel', 'Vazirmatn', serif; font-size: 30px; font-weight: 900; color: #0f2d59; }
+        .cert-persona { font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
         .cert-sub { font-size: 11px; text-transform: uppercase; color: #555; letter-spacing: 3px; margin: 5px 0 20px 0; font-weight: 800; }
         .cert-name { font-size: 26px; font-weight: 800; margin: 10px 0; color: #0f2d59; border-bottom: 2px solid #0f2d59; display: inline-block; padding: 0 25px; }
         .cert-desc { font-size: 14px; color: #222; line-height: 1.6; margin: 15px auto; max-width: 90%; font-weight: bold; }
-        .cert-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; font-size: 11px; color: #444; font-weight: bold; text-align: left; }
+        
+        .cert-footer { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            margin-top: 35px; 
+            font-size: 11px; 
+            color: #444; 
+            font-weight: bold; 
+            text-align: left; 
+        }
         .cert-stamp { width: 70px; height: 70px; border-radius: 50%; border: 3px double #0f2d59; display: flex; align-items: center; justify-content: center; color: #0f2d59; font-weight: 900; font-size: 11px; transform: rotate(-10deg); }
+
+        /* بەشی ئیمزای نوێ بە فۆنتی ڕێکی کۆمپیوتەری */
+        .cert-signature-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+        .cert-signature-name {
+            font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f2d59;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+        .cert-signature-line {
+            width: 120px;
+            height: 1px;
+            background-color: #0f2d59;
+            margin-bottom: 4px;
+        }
 
         .lock-box { background-color: #1a0808; border: 1px solid #551a1a; padding: 25px; border-radius: 16px; margin-top: 25px; }
         .share-btn { background-color: #25d366; color: white; border: none; padding: 14px; font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; margin: 10px 0; font-size: 15px; }
 
+        .story-btn {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color: white; border: none; padding: 16px; font-weight: 800; border-radius: 12px; cursor: pointer; width: 100%; margin-bottom: 15px; font-size: 15px;
+        }
+
+        /* کارتی هاوبەشکردن بۆ ستۆری - شاراوەیە، تەنها بۆ وێنەگرتنە */
+        .story-card-offscreen {
+            position: fixed;
+            top: -99999px;
+            left: -99999px;
+            width: 1080px;
+            height: 1920px;
+        }
+        .story-card {
+            width: 1080px;
+            height: 1920px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 70px;
+            text-align: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            position: relative;
+        }
+        .story-emoji { font-size: 180px; margin-bottom: 40px; }
+        .story-title { font-family: 'Cinzel', serif; font-size: 64px; font-weight: 900; color: #ffffff; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .story-persona { font-size: 40px; font-weight: 800; color: #ffffff; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; opacity: 0.9; }
+        .story-name-box { background: rgba(255,255,255,0.15); border: 3px solid rgba(255,255,255,0.5); border-radius: 30px; padding: 30px 60px; margin-bottom: 60px; backdrop-filter: blur(10px); }
+        .story-name { font-size: 52px; font-weight: 900; color: #ffffff; }
+        .story-footer { position: absolute; bottom: 90px; font-size: 30px; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: 2px; }
+
+        /* کۆنفێتی */
+        .confetti-piece {
+            position: fixed;
+            top: -20px;
+            width: 10px;
+            height: 16px;
+            opacity: 0.95;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0.3; }
+        }
+
+        /* FAQ */
+        .faq-box { margin-bottom: 25px; text-align: left; }
+        .faq-item { background-color: #0d0d0d; border: 1px solid #1c1c1c; border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+        .faq-question { padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; color: #ffffff; }
+        .faq-arrow { transition: transform 0.3s ease; color: #888; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; padding: 0 16px; font-size: 13px; color: #999999; line-height: 1.6; }
+        .faq-item.open .faq-answer { max-height: 220px; padding: 0 16px 16px 16px; }
+
+        /* نموونەی بڕوانامەکان */
+        .samples-box { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 25px; padding-bottom: 6px; }
+        .sample-card { flex: 0 0 auto; width: 110px; height: 140px; border-radius: 10px; padding: 12px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.15); }
+        .sample-emoji { font-size: 26px; margin-bottom: 6px; }
+        .sample-name { font-size: 11px; font-weight: 800; color: #ffffff; filter: blur(1.5px); opacity: 0.85; }
+        .sample-persona { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.75); text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
+
+        /* پرسیاری ڕۆژانە / streak */
+        .streak-box { background-color: #0d0d0d; border: 1px solid #1c1c1c; border-radius: 14px; padding: 16px; margin-bottom: 25px; text-align: left; }
+        .streak-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .streak-title { font-size: 13px; font-weight: 800; color: #ffffff; }
+        .streak-count { font-size: 13px; font-weight: 800; color: #ff8c00; }
+        .streak-question { font-size: 14px; color: #cccccc; margin-bottom: 12px; font-weight: 700; }
+        .streak-options { display: flex; flex-wrap: wrap; gap: 8px; }
+        .streak-opt-btn { background-color: #000000; border: 1px solid #222222; color: #ccc; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; }
+        .streak-opt-btn:hover { border-color: #666; }
+        .streak-done { font-size: 13px; color: #10b981; font-weight: 700; text-align: center; padding: 6px 0; }
+
+        /* دوگمەی ئەنجامی پێشوو */
+        .history-link-btn { background: none; border: 1px solid #222222; color: #aaaaaa; padding: 12px; border-radius: 12px; cursor: pointer; width: 100%; margin-bottom: 20px; font-size: 13px; font-weight: 700; }
+        .history-item { background-color: #0d0d0d; border: 1px solid #1c1c1c; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; }
+        .history-item:hover { border-color: #555; }
+        .history-item-name { font-size: 14px; font-weight: 800; color: #fff; }
+        .history-item-meta { font-size: 11px; color: #888; margin-top: 3px; }
+        .back-btn { background: none; border: none; color: #888; font-size: 13px; cursor: pointer; margin-bottom: 15px; font-weight: 700; text-align: left; }
+
+        /* ئاستی VIP */
+        .tier-selector { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tier-option { flex: 1; background-color: #0d0d0d; border: 2px solid #222222; border-radius: 14px; padding: 14px 8px; cursor: pointer; text-align: center; }
+        .tier-option.selected { border-color: #ffd700; background-color: #161200; }
+        .tier-option.vip.selected { border-color: #ffd700; }
+        .tier-name { font-size: 13px; font-weight: 800; color: #fff; }
+        .tier-price { font-size: 20px; font-weight: 900; color: #fff; margin: 4px 0; }
+        .tier-note { font-size: 10px; color: #888; }
+        .vip-badge { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; font-size: 10px; font-weight: 900; padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; margin-top: 6px; }
+
+        .gift-btn { background-color: #1a1a2e; color: #a78bfa; border: 1px solid #3d3d6b; padding: 14px; font-weight: 800; border-radius: 12px; cursor: pointer; width: 100%; margin-bottom: 15px; font-size: 14px; }
+
+        /* سکلێتۆنی لۆدینگ */
+        .skeleton-loading { background: linear-gradient(90deg, #0d0d0d 25%, #1a1a1a 50%, #0d0d0d 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .qr-img-file.loaded { animation: none; background: none; }
+        .btn-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 0.7s linear infinite; margin-inline-end: 6px; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* نەخشەی جیهانی */
+        .worldmap-box { margin-bottom: 25px; text-align: left; }
+        .worldmap-heading { font-size: 14px; color: #888; margin-bottom: 12px; font-weight: 800; }
+        .worldmap-frame { position: relative; width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid #1c1c1c; background-color: #050505; }
+        .worldmap-img { width: 100%; display: block; opacity: 0.35; filter: grayscale(1) invert(1); }
+        .worldmap-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background-color: #10b981; transform: translate(-50%, -50%); box-shadow: 0 0 8px rgba(16,185,129,0.9); cursor: default; }
+        .worldmap-dot.you { background-color: #ffd700; width: 14px; height: 14px; box-shadow: 0 0 12px rgba(255,215,0,1); }
+        .worldmap-dot::after {
+            content: '';
+            position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+            border-radius: 50%; background-color: inherit; opacity: 0.5;
+            transform: translate(-50%, -50%); animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse { 0% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; } 100% { transform: translate(-50%,-50%) scale(2.6); opacity: 0; } }
+        .worldmap-summary { font-size: 12px; color: #999; margin-top: 10px; text-align: center; }
+        .worldmap-summary .em { color: #10b981; font-weight: 800; }
+        .worldmap-you-tag { font-size: 11px; color: #ffd700; text-align: center; margin-top: 4px; font-weight: 700; }
+
         .rtl { direction: rtl; font-family: 'Vazirmatn', sans-serif; }
+        .rtl .worldmap-box { text-align: right; }
+        .rtl .faq-box, .rtl .streak-box, .rtl .history-item, .rtl .back-btn { text-align: right; }
         .rtl h1, .rtl h2, .rtl .cert-header { font-family: 'Vazirmatn', sans-serif; letter-spacing: 0; }
         .rtl .cert-desc, .rtl .typewriter-text { font-family: 'Vazirmatn', sans-serif; }
         .rtl .cert-footer, .rtl .leaderboard-box { text-align: right; }
+        .rtl .story-title, .rtl .story-persona, .rtl .story-name { font-family: 'Vazirmatn', sans-serif; }
+        .rtl .cert-signature-box { text-align: left; align-items: flex-start; }
     </style>
 </head>
 <body>
@@ -225,12 +435,50 @@
         <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
     </div>
 
+    <div class="live-counter" id="live-counter-box">
+        <div class="live-dot"></div>
+        <span id="live-counter-text"><span class="num" id="live-counter-num">0</span> people already did this</span>
+    </div>
+
     <!-- ١. لاپەڕەی یەکەم -->
     <div class="container" id="welcome-screen">
         <h1 id="main-title" class="top-title">THE PROTOCOL OF EXISTENCE</h1>
         <p class="description" id="main-desc">Enter your full name to initialize the matrix of the inner self.</p>
+
+        <div class="samples-box" id="samples-box"></div>
+
+        <button class="history-link-btn hidden" id="btn-view-history" onclick="showHistoryScreen()">🕰 <span id="history-link-text">My Previous Results</span></button>
+
         <input type="text" id="name-input" class="name-input" placeholder="Your Full Name..." autocomplete="off">
         <button class="primary-btn" id="btn-proceed" onclick="goToPayment()">Proceed</button>
+
+        <div class="streak-box" id="streak-box">
+            <div class="streak-head">
+                <div class="streak-title" id="streak-title-text">🔥 Daily Free Question</div>
+                <div class="streak-count" id="streak-count-text">Streak: 0</div>
+            </div>
+            <div class="streak-question" id="streak-question-text">Question...</div>
+            <div class="streak-options" id="streak-options-box"></div>
+        </div>
+
+        <div class="worldmap-box">
+            <div class="worldmap-heading" id="worldmap-heading">🌍 Around The World</div>
+            <div class="worldmap-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/BlankMap-World.svg/1000px-BlankMap-World.svg.png" class="worldmap-img" alt="World Map">
+                <div id="worldmap-dots"></div>
+            </div>
+            <div class="worldmap-summary" id="worldmap-summary">Loading global data...</div>
+            <div class="worldmap-you-tag hidden" id="worldmap-you-tag">📍 You're on the map!</div>
+        </div>
+
+        <div class="faq-box" id="faq-box"></div>
+    </div>
+
+    <!-- ٦. لاپەڕەی ئەنجامەکانی پێشوو -->
+    <div class="container hidden" id="history-screen">
+        <button class="back-btn" onclick="hideHistoryScreen()" id="history-back-btn">← Back</button>
+        <h2 class="section-title" id="history-title">My Previous Results</h2>
+        <div id="history-list"></div>
     </div>
 
     <!-- ٢. لاپەڕەی دووەم -->
@@ -238,14 +486,34 @@
         <h1 id="pay-top-h" class="top-title">$1 The Ego Test</h1>
         <h2 id="pay-title" class="section-title">Experience letting go.</h2>
         <p class="description" id="pay-desc">Send exactly $1 USDT (TRC20) from Binance or any wallet. Then, paste your TXID below to instantly verify on the blockchain.</p>
-        
+
+        <div class="tier-selector">
+            <div class="tier-option selected" id="tier-standard" onclick="selectTier('standard')">
+                <div class="tier-name" id="tier-standard-name">Standard</div>
+                <div class="tier-price">$1</div>
+                <div class="tier-note" id="tier-standard-note">Basic certificate</div>
+            </div>
+            <div class="tier-option vip" id="tier-vip" onclick="selectTier('vip')">
+                <div class="tier-name" id="tier-vip-name">VIP</div>
+                <div class="tier-price">$5</div>
+                <div class="tier-note" id="tier-vip-note">Gold seal, no share-lock</div>
+            </div>
+        </div>
+
+        <button class="gift-btn" id="btn-gift" onclick="giftTest()">🎁 <span id="gift-btn-text">Gift this test to a friend</span></button>
+
+        <div class="countdown-box">
+            <div class="countdown-label" id="countdown-label">This price disappears in</div>
+            <div class="countdown-timer" id="countdown-timer">24:00:00</div>
+        </div>
+
         <div class="pay-media-box">
             <div class="trc-badge-box">
                 <div class="trc-icon">₮</div>
                 <div class="trc-text">TRC20</div>
             </div>
             <div class="qr-wrapper">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TCtMbDSXpZxMVzPp24Y29b4kuUwziyhEe4" alt="QR Code" class="qr-img-file">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TCtMbDSXpZxMVzPp24Y29b4kuUwziyhEe4" alt="QR Code" class="qr-img-file skeleton-loading" onload="this.classList.add('loaded')">
             </div>
         </div>
 
@@ -283,16 +551,28 @@
             <div class="cert-inner">
                 <div class="cert-flags">🇺🇸 🇬🇧 🇪🇺 🇨🇦</div>
                 <div class="cert-header" id="cert-main-h">SINFINITY</div>
+                <div class="cert-persona" id="cert-persona-name">THE FLAME SOUL</div>
+                <div id="cert-vip-badge" class="vip-badge hidden">★ VIP ★</div>
                 <div class="cert-sub">International Certificate of Consciousness</div>
                 <div class="cert-name" id="cert-user-name">Yusf</div>
                 <div class="cert-desc" id="cert-final-desc">Has successfully dissolved the layers of the Ego, transcending material constraints through the ritual of the Burned Dollar, capturing absolute internal wisdom.</div>
+                
                 <div class="cert-footer">
-                    <div>REG: #9001-2015<br>VERIFIED VIA BLOCKCHAIN</div>
-                    <div class="cert-stamp">GLOBAL<br>SEAL</div>
+                    <div>
+                        REG: #9001-2015<br>
+                        VERIFIED VIA BLOCKCHAIN
+                    </div>
+                    <div class="cert-stamp" id="cert-stamp">GLOBAL<br>SEAL</div>
+                    <div class="cert-signature-box">
+                        <div class="cert-signature-name">Dr. Yousf</div>
+                        <div class="cert-signature-line"></div>
+                        <div style="font-size: 10px; color: #555;" id="cert-director-title">Director / بەڕێوەبەر</div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <button class="story-btn" id="btn-story" onclick="downloadStoryCard()">📸 Download Instagram Story</button>
         <button class="primary-btn" id="btn-download" onclick="downloadCertificate()">Download Certificate</button>
         <button class="primary-btn" id="btn-lock-trigger" onclick="triggerLockSystem()" style="background-color: #3b0b0b; color: white; border: 1px solid #551a1a;">Complete Protocol</button>
 
@@ -304,14 +584,61 @@
         </div>
     </div>
 
+    <!-- کارتی ستۆری -->
+    <div class="story-card-offscreen">
+        <div class="story-card" id="story-card">
+            <div class="story-emoji" id="story-emoji">🔥</div>
+            <div class="story-title" id="story-title">I DISSOLVED MY EGO</div>
+            <div class="story-persona" id="story-persona">THE FLAME SOUL</div>
+            <div class="story-name-box"><div class="story-name" id="story-name">Yusf</div></div>
+            <div class="story-footer" id="story-footer">theegotest.com — $1 Ego Test</div>
+        </div>
+    </div>
+
     <script>
         let currentLang = 'en';
         let currentQuestionIndex = 0;
         let userName = "";
         let shareCounter = 0;
+        let userScores = { fire: 0, water: 0, dark: 0, earth: 0 };
+        let finalPersona = "fire";
+        let countdownInterval = null;
+        let liveCounterInterval = null;
+        let selectedTier = 'standard';
 
-        // والێتی تایبەتی خۆت لێرە جێگیر بکە بۆ پشکنین
         const MY_WALLET_ADDRESS = "TCtMbDSXpZxMVzPp24Y29b4kuUwziyhEe4";
+        
+        // 🔒 پشکنینی بلۆکچەین بە تەواوی لایڤە بۆ بەکارهێنەران
+        const SKIP_BLOCKCHAIN_VERIFICATION_FOR_TESTING = false; 
+        
+        // 🔑 کۆدی تاقیکردنەوەی تایبەتی بۆ خۆت (لە بەشی TXID بینووسە بۆ بەشداربوونی خۆڕایی)
+        const SECRET_BYPASS_CODE = "YOUSF_FREE_PASS";
+
+        const personaColors = { fire: "#c0392b", water: "#1e6fa8", dark: "#5b3a8e", earth: "#7a5a2e" };
+        const personaEmoji = { fire: "🔥", water: "🌊", dark: "🌑", earth: "🌍" };
+
+        const personas = {
+            fire: {
+                en: { name: "THE FLAME SOUL", certH: "CERTIFICATE OF THE FLAME", desc: "Has burned away the illusions of the Ego in a blaze of raw passion, choosing intensity and truth over comfort, and emerging as a source of relentless inner fire." },
+                ku: { name: "ڕۆحی ئاگرین", certH: "بڕوانامەی ئاگر", desc: "بە شەیداییەکی ڕەها خەیاڵی ئۆگۆی سووتاند، ڕاستی و توندوتیژیی هەڵبژارد لە جیاتی ئاسوودەیی، و بووە سەرچاوەیەکی ئاگری ناخۆی کە هەرگیز ناکوژێتەوە." },
+                ar: { name: "روح النار", certH: "شهادة اللهيب", desc: "أحرق أوهام الأنا في عاصفة من الشغف الخام، مفضلاً الشدة والصدق على الراحة، وخرج كمصدر لنار داخلية لا تنطفئ." }
+            },
+            water: {
+                en: { name: "THE CALM DEPTHS", certH: "CERTIFICATE OF THE DEEP WATER", desc: "Has released the Ego like a stone into still water, finding peace beneath the surface, and now flows through life with quiet, unshakable clarity." },
+                ku: { name: "قووڵایی ئارام", certH: "بڕوانامەی ئاوی قووڵ", desc: "ئۆگۆی وەک بەردێک فڕێدایە ناو ئاوی هێمن، ئاشتی لەژێر ڕووکار دۆزییەوە، و ئێستا بە ڕوونی و بێدەنگییەکی نەگۆڕ بەناو ژیاندا دەڕوات." },
+                ar: { name: "الأعماق الهادئة", certH: "شهادة الماء العميق", desc: "أطلق الأنا كحجر في ماء ساكن، فوجد السلام تحت السطح، والآن يتدفق عبر الحياة بوضوح هادئ لا يتزعزع." }
+            },
+            dark: {
+                en: { name: "THE HIDDEN VOID", certH: "CERTIFICATE OF THE VOID", desc: "Has walked into the silence beyond the Ego and found not emptiness, but a vast hidden wisdom, becoming a keeper of mysteries the world cannot fully see." },
+                ku: { name: "بۆشایی شاراوە", certH: "بڕوانامەی بۆشایی", desc: "چووە ناو بێدەنگیی دەرەوەی ئۆگۆ و بۆشایی نەدۆزییەوە، بەڵکو داناییەکی فراوانی شاراوەی دۆزییەوە، و بووە پارێزەری نهێنییەک کە جیهان بە تەواوی نایبینێت." },
+                ar: { name: "الفراغ الخفي", certH: "شهادة الفراغ", desc: "سار في الصمت وراء الأنا فلم يجد عدماً، بل وجد حكمة خفية شاسعة، وأصبح حارساً لأسرار لا يراها العالم بالكامل." }
+            },
+            earth: {
+                en: { name: "THE ANCIENT ROOT", certH: "CERTIFICATE OF THE ROOT", desc: "Has grounded the Ego into ancient earth, exchanging vanity for lasting stability, and now stands unmoved as a foundation for the world around them." },
+                ku: { name: "ڕەگی کۆن", certH: "بڕوانامەی ڕەگ", desc: "ئۆگۆی لە خاکی کۆندا جێگیر کرد، لووتبەرزیی گۆڕی بە جێگیرییەکی بەردەوام، و ئێستا وەک بناغەیەک بۆ جیهانی دەوروبەری نالەقێت." },
+                ar: { name: "الجذر القديم", certH: "شهادة الجذر", desc: "رسّخ الأنا في تربة قديمة، مستبدلاً الغرور باستقرار دائم، ويقف الآن ثابتاً كأساس لمن حوله." }
+            }
+        };
 
         const translations = {
             en: {
@@ -322,24 +649,46 @@
                 covTitle: "The Covenant is Sealed.",
                 covDesc: "Now realize that you have let go of this one dollar. It is a small amount, but you understand that money holds no true permanence; it flows in and out. This dollar is not lost, it has transformed into a fraction of your consciousness. Therefore, do good as much as you can for this world and beyond.",
                 covBtn: "Begin the Test",
-                certH: "SINFINITY CERTIFICATE", certDesc: "Has successfully dissolved the layers of the Ego, transcending material constraints through the ritual of the Burned Dollar, capturing absolute internal wisdom and passing the matrix test.",
-                btnDownload: "Download Certificate", btnComplete: "Complete Protocol",
+                certSub: "International Certificate of Consciousness",
+                btnDownload: "Download Certificate", btnComplete: "Complete Protocol", btnStory: "📸 Download Instagram Story",
                 lockTitle: "🔒 System Locked!", lockDesc: "To unlock the system and allow re-entry, you must share this test link with 3 of your friends via WhatsApp or Telegram.",
                 unlockMsg: "🔒 System Unlocked! You can now retake the test.",
+                liveCounter: "people already dissolved their ego",
+                countdownLabel: "This price disappears in",
+                storyTitle: "I DISSOLVED MY EGO",
+                storyFooter: "theegotest.com — $1 Ego Test",
+                historyLinkText: "My Previous Results", historyTitle: "My Previous Results", historyBack: "← Back", historyEmpty: "No results yet.",
+                streakTitle: "🔥 Daily Free Question", streakAnswered: "Thanks! Come back tomorrow to keep your streak.",
+                tierStandardName: "Standard", tierStandardNote: "Basic certificate", tierVipName: "VIP", tierVipNote: "Gold seal, no share-lock",
+                giftBtnText: "Gift this test to a friend", giftMessage: "I'm gifting you the Ego Test — try it: ",
+                faqHeading: "Frequently Asked Questions",
+                worldmapHeading: "🌍 Around The World", worldmapSummary: "people from {count} countries have taken this test", worldmapYouTag: "📍 You're on the map!",
+                directorTitle: "Director / بەڕێوەبەر",
                 rtl: false
             },
             ku: {
                 title: "پڕۆتۆکۆڵی بوون", desc: "ناوە تەواوەکەت داخل بکە بۆ دەستپێکردنی ماتریکسی ناخی خۆت.", placeholder: "ناوە تەواوەکەت...", btn: "بەردەوام بە", alertName: "تکایە سەرەتا ناوەکەت بنووسە!",
-                payTop: "$1 تاقیکردنەوەی ناخ بە", payTitle: "هونەری دەستبەرداربوون.", payDesc: "تەنها $1 USDT بنێره لە ڕێگەی تۆڕی TRC20 (له باینانس یان هەر جزدانێکەوە). پاشان کۆدی حەواڵەکەت (TXID) لە خوارەوە دابنێ بۆ پشکنینی لایڤی بلۆکچەین.", payPlaceholder: "...لێرە دابنێ (TXID) کۆدی حەواڵەکەت", payVerifyBtn: "پشکنینی بلۆکچەین و دەستپێکردن", leaderboardTitle: "زۆرترین بڕی بەشداربوو بەڕەو نەبوون", alertHash: "تکایە کۆدی TXID دابنێ!",
+                payTop: "$1 تاقیکردنەوەی ناخ بە", payTitle: "هونەری دەستبەرداربوون.", payDesc: "تەنها $1 USDT بنێره لە ڕێگەی تۆڕی TRC20 (له باینانس یان هەر جزدانێکەوە). پاشان کۆدی حەواڵەکەت (TXID) لە خوارەوە دابنێ بۆ پشکنینی لایڤی بلۆکچەین.", payPlaceholder: "...لێرە دابنێ (TXID) کۆدی حەواڵەکەت", payVerifyBtn: "پشکنینی بلۆکچەین و دەستپێکردن", leaderTitle: "زۆرترین بڕی بەشداربوو بەڕەو نەبوون", alertHash: "تکایە کۆدی TXID دابنێ!",
                 verifying: "🔄 لە پشکنینی بلۆکچەیندایە... تکایە چاوەڕوان بە...",
                 invalidHash: "❌ کۆدی حەواڵەکردنەکە فەیکە یان پشتڕاست نەکراوەتەوە! دڵنیابەرەوە لەوەی بڕی $1 USDTت ناردووە بۆ جزدانە ڕاستەکە.",
                 covTitle: "پەیمانی ناخ مۆرکرا.",
                 covDesc: "ئێستا بیر بکەوە کە ئەم یەک دۆلارەت لەدەست دا، ڕاستە پارەیەکی کەمە بەڵام تێدەگەیت کەوا پارە هیچ گرنگییەکی نییە، دێت و دەڕوات. ئەم دۆلارە لە دەست نەچووه، بەڵکو بووە بە بەشێک لە هۆشیاریت؛ بۆیە تا بۆت دەکرێت چاکە بکە بۆ ئەم و دنیا.",
                 covBtn: "دەستپێکردنی تاقیکردنەوەکە",
-                certH: "بروانامەی فەرمی ناخ", certDesc: "بە سەرکەوتوویی توانی چینەکانی ئۆگۆ و خواستە مادییەکان تێکبشکێنێت لە ڕێگەی ڕێوڕەسمی دۆلارە سوتێنراوەکەوە، و توانی بەسەرکەوتوویی لە تاقیکردنەوەی هۆشیاری و دانایی ڕەهای ناخی خۆیدا دەربچێت.",
-                btnDownload: "داونلۆدکردنی بڕوانامە", btnComplete: "تەواوکردنی پڕۆتۆکۆڵ",
+                certSub: "بڕوانامەی نێودەوڵەتیی هۆشیاری",
+                btnDownload: "داونلۆدکردنی بڕوانامە", btnComplete: "تەواوکردنی پڕۆتۆکۆڵ", btnStory: "📸 داونلۆدی ستۆری ئینستاگرام",
                 lockTitle: "🔒 سیستەمەکە قوفڵ بوو!", lockDesc: "پڕۆتۆکۆڵ کۆتایی هات! بۆ کردنەوەی قوفڵی سایتەکە و بەشداریکردنەوەی دووبارە، دەبێت ئەم لینکە بۆ ٣ لە هاوڕێکانت بنێریت لە ڕێگەی واتسئەپ یان تێلیگرامەوە.",
                 unlockMsg: "🔒 قوفڵەکە کرایەوە! ئێستا دەتوانیت دووبارە بەشدار بیتەوە.",
+                liveCounter: "کەس ئۆگۆیان توانەوە",
+                countdownLabel: "ئەم نرخە لەناودەچێت لە ماوەی",
+                storyTitle: "ئۆگۆم توانەوە",
+                storyFooter: "theegotest.com — $1 تاقیکردنەوەی ناخ",
+                historyLinkText: "ئەنجامەکانی پێشووم", historyTitle: "ئەنجامەکانی پێشووم", historyBack: "← گەڕانەوە", historyEmpty: "هیچ ئەنجامێک تا ئێستا نییە.",
+                streakTitle: "🔥 پرسیاری ڕۆژانەی خۆڕایی", streakAnswered: "سوپاس! بۆ بەردەوامبوونی streak-ەکەت سبەی وەرەوە.",
+                tierStandardName: "ئاسایی", tierStandardNote: "بڕوانامەی سادە", tierVipName: "VIP", tierVipNote: "مۆری زێڕین، بەبێ قوفڵی هاوبەشکردن",
+                giftBtnText: "ئەم تاقیکردنەوەیە بکە بە دیاری بۆ هاوڕێیەک", giftMessage: "ئەم تاقیکردنەوەیەم بۆت دیاری کرد — تاقی بکەرەوە: ",
+                faqHeading: "پرسیارە دووبارەبووەکان",
+                worldmapHeading: "🌍 لە سەرانسەری جیهان", worldmapSummary: "کەس لە {count} وڵات ئەم تاقیکردنەوەیان کردووە", worldmapYouTag: "📍 تۆش لەسەر نەخشەکەیت!",
+                directorTitle: "بەڕێوەبەر / Director",
                 rtl: true
             },
             ar: {
@@ -350,23 +699,81 @@
                 covTitle: "تم ختم عهد الذات.",
                 covDesc: "الآن تفكر في أنك خسرت هذا الدولار الواحد، صحيح أنه مبلغ صغير لكنك تدرك أن المال ليس له أهمية حقيقية، يأتي ويذهب. هذا الدولار لم يضع، بل أصبح جزءاً من وعيك؛ لذلك افعل الخير قدر ما تستطيع لهذا العالم وما بعده.",
                 covBtn: "ابدأ الاختبار الآن",
-                certH: "شهادة تحول الذات العالمية", certDesc: "نجح في إذابة طبقات الإيجو وتجاوز القيود المادية من خلال طقوس الدولار المحروق، واجتياز اختبار مصفوفة الوعي الداخلي بنجاح تام.",
-                btnDownload: "تحميل الشهادة", btnComplete: "إكمال البروتوكول",
+                certSub: "شهادة دولية للوعي الداخلي",
+                btnDownload: "تحميل الشهادة", btnComplete: "إكمال البروتوكول", btnStory: "📸 تحميل ستوري انستغرام",
                 lockTitle: "🔒 النظام مغلق!", lockDesc: "اكتمل البروتوكول! لإعادة فتح النظام والسماح بالدخول مجدداً، يجب عليك مشاركة هذا الرابط مع 3 من أصدقائك عبر الواتساب أو التليجرام.",
                 unlockMsg: "🔒 تم فتح النظام بنجاح! يمكنك إعادة الاختبار الآن.",
+                liveCounter: "شخص تخلصوا من الأنا بالفعل",
+                countdownLabel: "هذا السعر يختفي خلال",
+                storyTitle: "تخلصت من الأنا",
+                storyFooter: "theegotest.com — اختبار الذات بـ $1",
+                historyLinkText: "نتائجي السابقة", historyTitle: "نتائجي السابقة", historyBack: "← رجوع", historyEmpty: "لا توجد نتائج بعد.",
+                streakTitle: "🔥 سؤال يومي مجاني", streakAnswered: "شكراً! عد غداً للحفاظ على سلسلتك.",
+                tierStandardName: "عادي", tierStandardNote: "شهادة أساسية", tierVipName: "VIP", tierVipNote: "ختم ذهبي، بدون قفل المشاركة",
+                giftBtnText: "أهدِ هذا الاختبار لصديق", giftMessage: "أهديتك اختبار الأنا — جربه: ",
+                faqHeading: "الأسئلة الشائعة",
+                worldmapHeading: "🌍 حول العالم", worldmapSummary: "شخص من {count} دولة خاضوا هذا الاختبار", worldmapYouTag: "📍 أنت أيضاً على الخريطة!",
+                directorTitle: "المدير / Director",
                 rtl: true
             }
         };
 
         const quizData = [
-            { en: { q: "If you could look at your soul in a mirror, what would it show?", a: ["A cracked crystal", "A roaring fire", "An endless dark void", "A calm lake"] }, ku: { q: "ئەگەر بتوانیت لە ئاوێنەیەکدا سەیری ڕۆحی خۆت بکەیت، چی نیشان دەدات؟", a: ["کریستاڵێکی درزبردوو", "ئاگرێکی بەهێز و گەش", "بۆشاییەکی تاریکی بێپایان", "دەریاچەیەکی بێدەنگ و ئارام"] }, ar: { q: "لو استطعت النظر إلى روحك في المرآة، فماذا سترى？", a: ["كريستال متصدع", "نار هائجة", "فراغ مظلم لا نهاية له", "بحيرة هادئة"] } },
-            { en: { q: "Which element drives your secret daily decisions?", a: ["Logic & Cold Ice", "Pure Emotion & Fire", "Absolute Freedom & Wind", "Stability & Ancient Earth"] }, ku: { q: "کامیان لە نهێنیدا بڕیارە ڕۆژانەکانت ئاڕاستە دەکەن؟", a: ["لۆژیک و سەهۆڵی سارد", "هەستی پاک و ئاگر", "ئازادی ڕەها و با", "جێگیری و خاکی کۆن"] }, ar: { q: "أي عنصر يوجه قراراتك اليومية السرية؟", a: ["المنطق والجليد البارد", "العاطفة النقية والنار", "الحرية المطلقة والرياح", "الاستقرار والأرض القديمة"] } },
-            { en: { q: "What is your deep reaction when everything falls apart?", a: ["I isolate myself into darkness", "I fight back with rage", "I accept it with calm peace", "I build a completely new plan"] }, ku: { q: "کاردانەوەی قووڵت چییە کاتێک هەموو شتێک لە دەوروبەرت تێکدەچێت؟", a: ["خۆم لە ناو تاریکیدا گۆشەگیر دەکەم", "بە تووڕەیی و ڕقەوە دەجەنگمەوە", "بە ئاشتی و هێمنی قبووڵی دەکەم", "پلانێکی تەواو نوێ بنیات دەنێم"] }, ar: { q: "ما هي ردة فعلك العميقة عندما ينهار كل شيء من حولك؟", a: ["أعزل نفسي في الظلام", "أحارب بغضب عارم", "أتقبله بسلام وهدوء تام", "أبني خطة جديدة بالكامل"] } },
-            { en: { q: "Choose your absolute weapon in the war of minds:", a: ["Absolute Silence", "Sharp Cutting Words", "A Fake Safe Smile", "Deep Total Ignorance"] }, ku: { q: "چەکە ڕەهاکەت هەڵبژێرە لە جەنگی عەقڵەکاندا:", a: ["بێدەنگی ڕەها", "وشەی تیژ و بڕەر", "زەردەخەنەیەکی ساختەی دڵنیاکەرەوە", "پشتگوێخستنی قووڵ و تەواو"] }, ar: { q: "اختر سلاحك المطلق في حرب العقول والقلوب:", a: ["الصمت المطلق", "الكلمات الحادة القاطعة", "ابتسامة مزيفة مطمئنة", "التجاهل العميق والتام"] } },
-            { en: { q: "What do you see when you close your eyes in total darkness?", a: ["Past Regrets", "Future Dreams", "Absolute Nothingness", "A spark of hidden light"] }, ku: { q: "چی دەبینیت کاتێک لە تاریکی ڕەهادا چاوەکانت لێک دەنێیت؟", a: ["پەشیمانی ڕابردوو", "خەونەکانی داهاتوو", "هیچی ڕەها (نەبوون)", "تروسکاییەک لە ڕووناکی شاراوە"] }, ar: { q: "ماذا ترى عندما تغلق عينيك في الظلام الدامس؟", a: ["ندم الماضي", "أحلام المستقبل", "العدم المطلق", "شرارة من نور خفي"] } },
-            { en: { q: "If your mind was a prison, who would be the guard?", a: ["My Fears", "Society's Rules", "My Own Pride", "Time"] }, ku: { q: "ئەگەر عەقڵت زیندانێک بوایە، کێ پاسەوانەکەی دەبوو؟", a: ["ترسەکانم", "یاساکانی کۆمەڵگا", "لووتبەرزی و فیزم", "کاتی گەردوون"] }, ar: { q: "لو كان عقلك سجناً، فمن سيكون الحارس؟", a: ["مخاوفي", "قوانين المجتمع", "كبريائي الخاص", "الوقت"] } },
-            { en: { q: "When you leave this world, how do you want the cosmos to remember you?", a: ["As a deep mystery", "As a powerful legend", "As a source of light and peace", "I do not care about being remembered"] }, ku: { q: "کاتێک ئەم جیهانە جێدەهێڵیت، دەتەوێت گەردوون چۆن یادت بکاتەوە؟", a: ["وەک نهێنییەکی قووڵ", "وەک ئەفسانەیەک", "وەک سەرچاوەیەکی ئاشتی", "گرنگی بە یادکردنەوە نادەم"] }, ar: { q: "عندما تغادر هذا العالم، كيف تريد أن يتذكرك الكون？", a: ["كلغز عميق غامض", "كأسطورة قوية", "كمصدر للنور والسلام", "لا يهمني أن يتم تذكري على الإطلاق"] } }
+            { el: ["earth","fire","dark","water"], en: { q: "If you could look at your soul in a mirror, what would it show?", a: ["A cracked crystal", "A roaring fire", "An endless dark void", "A calm lake"] }, ku: { q: "ئەگەر بتوانیت لە ئاوێنەیەکدا سەیری ڕۆحی خۆت بکەیت، چی نیشان دەدات؟", a: ["کریستاڵێکی درزبردوو", "ئاگرێکی بەهێز و گەش", "بۆشاییەکی تاریکی بێپایان", "دەریاچەیەکی بێدەنگ و ئارام"] }, ar: { q: "لو استطعت النظر إلى روحك في المرآة، فماذا سترى؟", a: ["كريستال متصدع", "نار هائجة", "فراغ مظلم لا نهاية له", "بحيرة هادئة"] } },
+            { el: ["water","fire","dark","earth"], en: { q: "Which element drives your secret daily decisions?", a: ["Logic & Cold Ice", "Pure Emotion & Fire", "Absolute Freedom & Wind", "Stability & Ancient Earth"] }, ku: { q: "کامیان لە نهێنیدا بڕیارە ڕۆژانەکانت ئاڕاستە دەکەن؟", a: ["لۆژیک و سەهۆڵی سارد", "هەستی پاک و ئاگر", "ئازادی ڕەها و با", "جێگیری و خاکی کۆن"] }, ar: { q: "أي عنصر يوجه قراراتك اليومية السرية？", a: ["المنطق والجليد البارد", "العاطفة النقية والنار", "الحرية المطلقة والرياح", "الاستقرار والأرض القديمة"] } },
+            { el: ["dark","fire","water","earth"], en: { q: "What is your deep reaction when everything falls apart?", a: ["I isolate myself into darkness", "I fight back with rage", "I accept it with calm peace", "I build a completely new plan"] }, ku: { q: "کاردانەوەی قووڵت چییە کاتێک هەموو شتێک لە دەوروبەرت تێکدەچێت؟", a: ["خۆم لە ناو تاریکیدا گۆشەگیر دەکەم", "بە تووڕەیی و ڕقەوە دەجەنگمەوە", "بە ئاشتی و هێمنی قبووڵی دەکەم", "پلانێکی تەواو نوێ بنیات دەنێم"] }, ar: { q: "ما هي ردة فعلك العميقة عندما ينهار كل شيء من حولك؟", a: ["أعزل نفسي في الظلام", "أحارب بغضب عارم", "أتقبله بسلام وهدوء تام", "أبني خطة جديدة بالكامل"] } },
+            { el: ["dark","fire","water","earth"], en: { q: "Choose your absolute weapon in the war of minds:", a: ["Absolute Silence", "Sharp Cutting Words", "A Fake Safe Smile", "Deep Total Ignorance"] }, ku: { q: "چەکە ڕەهاکەت هەڵبژێرە لە جەنگی عەقڵەکاندا:", a: ["بێدەنگی ڕەها", "وشەی تیژ و بڕەر", "زەردەخەنەیەکی ساختەی دڵنیاکەرەوە", "پشتگوێخستنی قووڵ و تەواو"] }, ar: { q: "اختر سلاحك المطلق في حرب العقول والقلوب:", a: ["الصمت المطلق", "الكلمات الحادة القاطعة", "ابتسابة مزيفة مطمئنة", "التجاهل العميق والتام"] } },
+            { el: ["earth","fire","dark","water"], en: { q: "What do you see when you close your eyes in total darkness?", a: ["Past Regrets", "Future Dreams", "Absolute Nothingness", "A spark of hidden light"] }, ku: { q: "چی دەبینیت کاتێک لە تاریکی ڕەهادا چاوەکانت لێک دەنێیت؟", a: ["پەشیمانی ڕابردوو", "خەونەکانی داهاتوو", "هیچی ڕەها (نەبوون)", "تروسکاییەک لە ڕووناکی شاراوە"] }, ar: { q: "ماذا ترى عندما تغلق عينيك في الظلام الدامس؟", a: ["ندم الماضي", "أحلام المستقبل", "العدم المطلق", "شرارة من نور خفي"] } },
+            { el: ["dark","earth","fire","water"], en: { q: "If your mind was a prison, who would be the guard?", a: ["My Fears", "Society's Rules", "My Own Pride", "Time"] }, ku: { q: "ئەگەر عەقڵت زیندانێک بوایە، کێ پاسەوانەکەی دەبوو؟", a: ["ترسەکانم", "یاساکانی کۆمەڵگا", "لووتبەرزی و فیزم", "کاتی گەردوون"] }, ar: { q: "لو كان عقلك سجناً، فمن سيكون الحارس؟", a: ["مخاوفي", "قوانين المجتمع", "كبريائي الخاص", "الوقت"] } },
+            { el: ["dark","fire","water","earth"], en: { q: "When you leave this world, how do you want the cosmos to remember you?", a: ["As a deep mystery", "As a powerful legend", "As a source of light and peace", "I do not care about being remembered"] }, ku: { q: "کاتێک ئەم جیهانە جێدەهێڵیت، دەتەوێت گەردوون چۆن یادت بکاتەوە؟", a: ["وەک نهێنییەکی قووڵ", "وەک ئەفسانەیەک", "وەک سەرچاوەیەکی ئاشتی", "گرنگی بە یادکردنەوە نادەم"] }, ar: { q: "عندما تغادر هذا العالم، كيف تريد أن يتذكرك الكون؟", a: ["كلغز عميق غامض", "كأسطورة قوية", "كمصدر للنور والسلام", "لا يهمني أن يتم تذكري على الإطلاق"] } }
         ];
+
+        const faqData = [
+            { en: { q: "Is this a real payment?", a: "Yes. You send exactly $1 (or $5 for VIP) in USDT over the TRC20 network to the address shown. It's one real, small blockchain transaction — not a subscription." },
+              ku: { q: "ئایا ئەمە پارەدانێکی ڕاستەقینەیە؟", a: "بەڵێ، تۆ بە ڕاستی $1 (یان $5 بۆ VIP) بە USDT لە ڕێگەی تۆڕی TRC20 دەنێریت بۆ ئەو ناونیشانەی پیشان دراوە. تاقە مامەڵەیەکی بچووکی ڕاستەقینەی بلۆکچەینە، نەک بەشداریی مانگانە." },
+              ar: { q: "هل هذا دفع حقيقي؟", a: "نعم. ترسل بالضبط $1 (أو $5 لـ VIP) بعملة USDT عبر شبكة TRC20 إلى العنوان الموضح. إنها معاملة بلوكشين حقيقية وصغيرة، وليست اشتراكاً." } },
+            { en: { q: "Why do I have to pay at all?", a: "The small payment is part of the ritual. Letting go of something real, even a tiny amount, is what makes the exercise meaningful instead of just another free quiz." },
+              ku: { q: "بۆچی پێویستە پارە بدەم؟", a: "پارەدانە بچووکەکە بەشێکە لە ڕێورەسمەکە. وازهێنان لە شتێکی ڕاستەقینە، تەنانەت بڕێکی کەم بێت، ئەوەیە کە تاقیکردنەوەکە بەواتا دەکات، نەک تەنها کوویزێکی خۆڕایی تر." },
+              ar: { q: "لماذا يجب أن أدفع أصلاً؟", a: "الدفع الصغير جزء من الطقس. التخلي عن شيء حقيقي، ولو كان مبلغاً صغيراً، هو ما يجعل التجربة ذات معنى بدلاً من كونها مجرد اختبار مجاني آخر." } },
+            { en: { q: "What happens after I pay?", a: "We verify your transaction directly on the TRON blockchain. Then you read a short reflection and answer a 7-question quiz to receive your personalized certificate." },
+              ku: { q: "پاش پارەدان چی ڕوودەدات؟", a: "ئێمە مامەڵەکەت ڕاستەوخۆ لەسەر بلۆکچەینی TRON پشتڕاست دەکەینەوە. پاشان دەقێکی کورت دەخوێنیتەوە و وەڵامی ٧ پرسیار دەدەیتەوە بۆ وەرگرتنی بڕوانامەی تایبەت بە خۆت." },
+              ar: { q: "ماذا يحدث بعد الدفع؟", a: "نتحقق من معاملتك مباشرة على بلوكشين TRON. ثم تقرأ نصاً تأملياً قصيراً وتجيب على ٧ أسئلة لتحصل على شهادتك الشخصية." } },
+            { en: { q: "Is my data safe?", a: "We don't collect passwords or card numbers. Your name and quiz answers are stored only in your own browser, not on our servers." },
+              ku: { q: "ئایا زانیارییەکانم پارێزراون؟", a: "ئێمە هیچ وشەی نهێنی یان ژمارەی کارتێک کۆناکەینەوە. ناو و وەڵامەکانی کوویزت تەنها لە وێبگەڕی خۆتدا هەڵدەگیرێت، نەک لەسەر سێرڤەرەکانمان." },
+              ar: { q: "هل بياناتي آمنة؟", a: "نحن لا نجمع كلمات مرور أو أرقام بطاقات. اسمك وإجاباتك تُحفظ فقط في متصفحك أنت، وليس على خوادمنا." } }
+        ];
+
+        const streakQuestions = [
+            { en: { q: "Right now, what's louder — your fear or your ambition?", a: ["My fear", "My ambition", "They're equal", "Neither, silence"] },
+              ku: { q: "ئێستا، کامیان دەنگی بەرزترە — ترست یان ئارەزووت؟", a: ["ترسم", "ئارەزووم", "یەکسانن", "هیچیان، بێدەنگی"] },
+              ar: { q: "الآن، أيهما أعلى صوتاً — خوفك أم طموحك؟", a: ["خوفي", "طموحي", "متساويان", "لا شيء، صمت"] } },
+            { en: { q: "If today had a color, what would it be?", a: ["Red", "Blue", "Black", "Gold"] },
+              ku: { q: "ئەگەر ئەمڕۆ ڕەنگێکی هەبوایە، چ ڕەنگێک دەبوو؟", a: ["سوور", "شین", "ڕەش", "زێڕی"] },
+              ar: { q: "لو كان لليوم لون، فماذا سيكون؟", a: ["أحمر", "أزرق", "أسود", "ذهبي"] } },
+            { en: { q: "What are you avoiding thinking about today?", a: ["The future", "The past", "A person", "Nothing"] },
+              ku: { q: "ئەمڕۆ لە بیرکردنەوە لە چی خۆت دەپارێزیت؟", a: ["داهاتوو", "ڕابردوو", "کەسێک", "هیچ"] },
+              ar: { q: "ما الذي تتجنب التفكير فيه اليوم؟", a: ["المستقبل", "الماضي", "شخص ما", "لا شيء"] } }
+        ];
+
+        const sampleCertNames = { en: ["Alex", "Sara", "Ahmed"], ku: ["ئازاد", "سارا", "ئەحمەد"], ar: ["أليكس", "سارة", "أحمد"] };
+
+        const worldMapCountries = {
+            US: { left: 20, top: 36, flag: "🇺🇸" },
+            GB: { left: 46, top: 25, flag: "🇬🇧" },
+            DE: { left: 50, top: 25, flag: "🇩🇪" },
+            IQ: { left: 57, top: 36, flag: "🇮🇶" },
+            SA: { left: 57, top: 43, flag: "🇸🇦" },
+            EG: { left: 55, top: 39, flag: "🇪🇬" },
+            TR: { left: 55, top: 30, flag: "🇹🇷" },
+            IN: { left: 66, top: 43, flag: "🇮🇳" },
+            BR: { left: 31, top: 63, flag: "🇧🇷" },
+            NG: { left: 49, top: 49, flag: "🇳🇬" },
+            FR: { left: 47, top: 27, flag: "🇫🇷" },
+            CA: { left: 19, top: 24, flag: "🇨🇦" },
+            AU: { left: 82, top: 68, flag: "🇦🇺" },
+            JP: { left: 84, top: 32, flag: "🇯🇵" },
+            AE: { left: 59, top: 42, flag: "🇦🇪" }
+        };
 
         function switchLanguage(lang) {
             currentLang = lang;
@@ -380,21 +787,44 @@
             document.getElementById('main-desc').innerText = translations[lang].desc;
             document.getElementById('name-input').placeholder = translations[lang].placeholder;
             document.getElementById('btn-proceed').innerText = translations[lang].btn;
-            
+
             document.getElementById('pay-top-h').innerText = translations[lang].payTop;
             document.getElementById('pay-title').innerText = translations[lang].payTitle;
             document.getElementById('pay-desc').innerText = translations[lang].payDesc;
             document.getElementById('hash-input').placeholder = translations[lang].payPlaceholder;
             document.getElementById('btn-verify').innerText = translations[lang].payVerifyBtn;
             document.getElementById('leader-title').innerText = translations[lang].leaderTitle;
+            document.getElementById('countdown-label').innerText = translations[lang].countdownLabel;
 
             document.getElementById('cov-title').innerText = translations[lang].covTitle;
             document.getElementById('btn-start-quiz').innerText = translations[lang].covBtn;
 
             document.getElementById('btn-download').innerText = translations[lang].btnDownload;
             document.getElementById('btn-lock-trigger').innerText = translations[lang].btnComplete;
+            document.getElementById('btn-story').innerText = translations[lang].btnStory;
+
+            document.getElementById('live-counter-text').innerHTML = '<span class="num" id="live-counter-num">' + formatNum(getLiveCounterValue()) + '</span> ' + translations[lang].liveCounter;
+
+            document.getElementById('tier-standard-name').innerText = translations[lang].tierStandardName;
+            document.getElementById('tier-standard-note').innerText = translations[lang].tierStandardNote;
+            document.getElementById('tier-vip-name').innerText = translations[lang].tierVipName;
+            document.getElementById('tier-vip-note').innerText = translations[lang].tierVipNote;
+            document.getElementById('gift-btn-text').innerText = translations[lang].giftBtnText;
+            document.getElementById('history-link-text').innerText = translations[lang].historyLinkText;
+            document.getElementById('history-title').innerText = translations[lang].historyTitle;
+            document.getElementById('history-back-btn').innerText = translations[lang].historyBack;
+            document.getElementById('streak-title-text').innerText = translations[lang].streakTitle;
+            document.getElementById('cert-director-title').innerText = translations[lang].directorTitle;
+
+            renderSampleCerts();
+            renderFAQ();
+            renderStreakWidget();
+            refreshHistoryButton();
+            renderWorldMap();
+            if (!document.getElementById('history-screen').classList.contains('hidden')) { renderHistoryList(); }
 
             if (!document.getElementById('quiz-screen').classList.contains('hidden')) { loadQuestion(); }
+            if (!document.getElementById('result-screen').classList.contains('hidden')) { applyPersonaToCert(finalPersona); }
             if (translations[lang].rtl) { document.body.classList.add('rtl'); } else { document.body.classList.remove('rtl'); }
         }
 
@@ -405,68 +835,270 @@
             document.getElementById('welcome-screen').classList.add('hidden');
             document.getElementById('payment-screen').classList.remove('hidden');
             switchLanguage(currentLang);
+            startCountdown();
         }
 
-        // 🔥 سیستەمی لایڤ و واقیعی پشکنینی بلۆکچەین بەبێ تێکدانی هیچ بەشێکی تری وێبسایتەکە
+        function renderSampleCerts() {
+            const box = document.getElementById('samples-box');
+            if (!box) return;
+            box.innerHTML = "";
+            ["fire", "water", "dark"].forEach((key, i) => {
+                const card = document.createElement('div');
+                card.className = 'sample-card';
+                card.style.background = `linear-gradient(135deg, ${personaColors[key]}, #050505)`;
+                card.innerHTML = `<div class="sample-emoji">${personaEmoji[key]}</div><div class="sample-name">${sampleCertNames[currentLang][i]}</div><div class="sample-persona">${personas[key][currentLang].name}</div>`;
+                box.appendChild(card);
+            });
+        }
+
+        function renderFAQ() {
+            const box = document.getElementById('faq-box');
+            if (!box) return;
+            box.innerHTML = `<h3 style="font-size:14px;color:#888;margin-bottom:12px;font-weight:800;">${translations[currentLang].faqHeading}</h3>`;
+            faqData.forEach((item, index) => {
+                const data = item[currentLang];
+                const el = document.createElement('div');
+                el.className = 'faq-item';
+                el.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(${index})">
+                        <span>${data.q}</span>
+                        <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-answer">${data.a}</div>
+                `;
+                box.appendChild(el);
+            });
+        }
+
+        function toggleFAQ(index) {
+            const items = document.querySelectorAll('#faq-box .faq-item');
+            items[index].classList.toggle('open');
+        }
+
+        function selectTier(tier) {
+            selectedTier = tier;
+            document.getElementById('tier-standard').classList.toggle('selected', tier === 'standard');
+            document.getElementById('tier-vip').classList.toggle('selected', tier === 'vip');
+        }
+
+        function getRequiredAmount() { return selectedTier === 'vip' ? 5 : 1; }
+
+        function giftTest() {
+            const text = encodeURIComponent(translations[currentLang].giftMessage + window.location.href);
+            window.open("https://api.whatsapp.com/send?text=" + text, '_blank');
+        }
+
+        function todayString() {
+            const d = new Date();
+            return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        }
+
+        function getStreakData() {
+            const raw = localStorage.getItem('egoTestStreak');
+            if (!raw) return { count: 0, lastDate: null };
+            try { return JSON.parse(raw); } catch (e) { return { count: 0, lastDate: null }; }
+        }
+
+        function renderStreakWidget() {
+            const streak = getStreakData();
+            document.getElementById('streak-count-text').innerText = "🔥 " + streak.count;
+
+            const optionsBox = document.getElementById('streak-options-box');
+            const questionText = document.getElementById('streak-question-text');
+            const today = todayString();
+
+            if (streak.lastDate === today) {
+                questionText.innerText = translations[currentLang].streakAnswered;
+                optionsBox.innerHTML = "";
+                return;
+            }
+
+            const qSet = streakQuestions[Math.floor(Math.random() * streakQuestions.length)][currentLang];
+            questionText.innerText = qSet.q;
+            optionsBox.innerHTML = "";
+            qSet.a.forEach(optionText => {
+                const btn = document.createElement('button');
+                btn.className = 'streak-opt-btn';
+                btn.innerText = optionText;
+                btn.onclick = () => answerStreakQuestion();
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function answerStreakQuestion() {
+            const streak = getStreakData();
+            const today = todayString();
+            const yesterday = (() => { const d = new Date(); d.setDate(d.getDate() - 1); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); })();
+
+            let newCount = 1;
+            if (streak.lastDate === yesterday) newCount = streak.count + 1;
+            else if (streak.lastDate === today) newCount = streak.count;
+
+            localStorage.setItem('egoTestStreak', JSON.stringify({ count: newCount, lastDate: today }));
+            renderStreakWidget();
+        }
+
+        function getCountryDist() {
+            const raw = localStorage.getItem('egoTestCountryDist');
+            if (raw) { try { return JSON.parse(raw); } catch (e) {} }
+            const base = { US: 340, GB: 210, DE: 150, IQ: 480, SA: 190, EG: 220, TR: 160, IN: 260, BR: 120, NG: 95, FR: 130, CA: 100, AU: 60, JP: 55, AE: 140 };
+            localStorage.setItem('egoTestCountryDist', JSON.stringify(base));
+            return base;
+        }
+
+        function renderWorldMap() {
+            document.getElementById('worldmap-heading').innerText = translations[currentLang].worldmapHeading;
+            const dist = getCountryDist();
+            const dotsBox = document.getElementById('worldmap-dots');
+            dotsBox.innerHTML = "";
+
+            const visitorCountry = localStorage.getItem('egoTestVisitorCountry');
+            let totalCount = 0;
+            let countryCount = 0;
+
+            Object.keys(worldMapCountries).forEach(code => {
+                const pos = worldMapCountries[code];
+                const count = dist[code] || 0;
+                if (count <= 0) return;
+                countryCount++;
+                totalCount += count;
+
+                const dot = document.createElement('div');
+                dot.className = 'worldmap-dot' + (code === visitorCountry ? ' you' : '');
+                dot.style.left = pos.left + '%';
+                dot.style.top = pos.top + '%';
+                dot.title = pos.flag + ' ' + code + ': ' + count;
+                dotsBox.appendChild(dot);
+            });
+
+            const summaryText = translations[currentLang].worldmapSummary.replace('{count}', countryCount);
+            document.getElementById('worldmap-summary').innerText = formatNum(totalCount) + ' ' + summaryText;
+
+            document.getElementById('worldmap-you-tag').classList.toggle('hidden', !visitorCountry);
+            if (visitorCountry) document.getElementById('worldmap-you-tag').innerText = translations[currentLang].worldmapYouTag;
+        }
+
+        function detectVisitorCountry() {
+            const existing = localStorage.getItem('egoTestVisitorCountry');
+            if (existing) { renderWorldMap(); return; }
+
+            fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .then(data => {
+                    const code = data && data.country_code;
+                    if (code && worldMapCountries[code]) {
+                        localStorage.setItem('egoTestVisitorCountry', code);
+                        const dist = getCountryDist();
+                        dist[code] = (dist[code] || 0) + 1;
+                        localStorage.setItem('egoTestCountryDist', JSON.stringify(dist));
+                    }
+                    renderWorldMap();
+                })
+                .catch(() => { renderWorldMap(); });
+        }
+
+        function formatNum(n) { return n.toLocaleString('en-US'); }
+
+        function getLiveCounterValue() {
+            let val = localStorage.getItem('egoTestLiveCount');
+            if (!val) {
+                val = 18400 + Math.floor(Math.random() * 3200);
+                localStorage.setItem('egoTestLiveCount', val);
+            }
+            return parseInt(val, 10);
+        }
+
+        function bumpLiveCounter() {
+            let val = getLiveCounterValue() + (1 + Math.floor(Math.random() * 3));
+            localStorage.setItem('egoTestLiveCount', val);
+            const el = document.getElementById('live-counter-num');
+            if (el) el.innerText = formatNum(val);
+        }
+
+        function initLiveCounter() {
+            document.getElementById('live-counter-num').innerText = formatNum(getLiveCounterValue());
+            liveCounterInterval = setInterval(bumpLiveCounter, 5000 + Math.random() * 6000);
+        }
+
+        function startCountdown() {
+            let deadline = localStorage.getItem('egoTestDeadline');
+            if (!deadline || parseInt(deadline, 10) < Date.now()) {
+                deadline = Date.now() + 24 * 60 * 60 * 1000;
+                localStorage.setItem('egoTestDeadline', deadline);
+            } else {
+                deadline = parseInt(deadline, 10);
+            }
+
+            if (countdownInterval) clearInterval(countdownInterval);
+            function tick() {
+                let remaining = deadline - Date.now();
+                if (remaining <= 0) {
+                    deadline = Date.now() + 24 * 60 * 60 * 1000;
+                    localStorage.setItem('egoTestDeadline', deadline);
+                    remaining = 24 * 60 * 60 * 1000;
+                }
+                const h = String(Math.floor(remaining / 3600000)).padStart(2, '0');
+                const m = String(Math.floor((remaining % 3600000) / 60000)).padStart(2, '0');
+                const s = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
+                const timerEl = document.getElementById('countdown-timer');
+                if (timerEl) timerEl.innerText = h + ':' + m + ':' + s;
+            }
+            tick();
+            countdownInterval = setInterval(tick, 1000);
+        }
+
+        // ================== سیستم و پشکنینی بلۆکچەین + کۆدی نهێنی ==================
         async function verifyPayment() {
             const hash = document.getElementById('hash-input').value.trim();
-            if(hash === "") { 
-                alert(translations[currentLang].alertHash); 
-                return; 
-            }
-            
-            // گۆڕینی دەقی دوگمەکە بۆ دۆخی پشکنین
+            if(hash === "") { alert(translations[currentLang].alertHash); return; }
+
             const verifyBtn = document.getElementById('btn-verify');
             const originalBtnText = verifyBtn.innerText;
+
             verifyBtn.innerText = translations[currentLang].verifying;
             verifyBtn.disabled = true;
 
+            // 🔑 ١. ئەگەر کۆدە نهێنییەکەی خۆت بوو (YOUSF_FREE_PASS) ڕاستەوخۆ بە خۆڕایی چالاک دەبێت
+            if (hash === SECRET_BYPASS_CODE) {
+                setTimeout(() => {
+                    verifyBtn.innerText = originalBtnText;
+                    verifyBtn.disabled = false;
+                    document.getElementById('payment-screen').classList.add('hidden');
+                    document.getElementById('covenant-screen').classList.remove('hidden');
+                    if (countdownInterval) clearInterval(countdownInterval);
+                    switchLanguage(currentLang);
+                    startTypewriter();
+                }, 800);
+                return;
+            }
+
+            // 🔒 ٢. بۆ خەڵکی تر لێرە پشکنینی ڕاستەقینەی لایڤی بلۆکچەینی TRON بە کات ڕێکدەخات
             try {
-                // بەکارهێنانی TronScan API بۆ پشکنینی حەواڵەکە لەسەر بلۆکچەینی فەرمی TRON
                 const response = await fetch(`https://apilist.tronscan.org/api/transaction-info?hash=${hash}`);
-                
-                if (!response.ok) {
-                    throw new Error("API Connection Failed");
-                }
-                
+                if (!response.ok) throw new Error("API Connection Failed");
                 const data = await response.json();
 
-                // ١. پشکنین کە ئایا کۆدەکە هەیە و سەرکەوتوو بووە
                 if (data && data.contractRet === "SUCCESS") {
-                    
-                    // ٢. پشکنینی والێتی وەرگر (دەبێت والێتی تۆ بێت)
-                    const transferInfo = data.trigger_info?.parameter;
-                    const contractType = data.contractType;
-
-                    // پشکنینی ناردنی لایڤی USDT (تۆڕی TRC20 جیاوازە لە TRON)
                     if (data.trc20TransferInfo && data.trc20TransferInfo.length > 0) {
                         const transfer = data.trc20TransferInfo[0];
-                        
                         const toAddress = transfer.to_address;
-                        // بڕی ناردنەکە لە بلۆکچەین بە 6 بەهای یەکە دێت (1,000,000 یەکسانە بە $1)
-                        const amount = parseFloat(transfer.amount_str) / 1000000; 
+                        const amount = parseFloat(transfer.amount_str) / 1000000;
 
-                        // مەرجەکان: دەبێت بۆ والێتی تۆ بێت و بڕەکەشی کەمتر نەبێت لە $1
-                        if (toAddress === MY_WALLET_ADDRESS && amount >= 1) {
-                            // پارەدان واقیعی بوو! چوونە بەشی داهاتوو
+                        if (toAddress === MY_WALLET_ADDRESS && amount >= getRequiredAmount()) {
                             document.getElementById('payment-screen').classList.add('hidden');
                             document.getElementById('covenant-screen').classList.remove('hidden');
+                            if (countdownInterval) clearInterval(countdownInterval);
                             switchLanguage(currentLang);
                             startTypewriter();
                             return;
                         }
                     }
                 }
-                
-                // ئەگەر مەرجەکان جێبەجێ نەبوون
                 alert(translations[currentLang].invalidHash);
-
             } catch (error) {
                 console.error(error);
-                // ئەگەر لە کاتی تاقیکردنەوە لە ناو کۆدپێن بلۆک دروست بوو، دەتوانیت بۆ ئاسانکاری ئەم بەشە بەکاربێنیت
                 alert("Blockchain local check timeout. Please ensure the TXID is completely valid on TronScan network.");
             } finally {
-                // گەڕاندنەوەی دوگمەکە بۆ دۆخی سەرەتا
                 verifyBtn.innerText = originalBtnText;
                 verifyBtn.disabled = false;
             }
@@ -477,9 +1109,9 @@
             const box = document.getElementById('typewriter-box');
             box.innerHTML = "";
             let i = 0;
-            
+
             document.getElementById('sticker-box').classList.add('fade-out-effect');
-            
+
             function type() {
                 if (i < text.length) {
                     box.innerHTML += text.charAt(i);
@@ -495,6 +1127,8 @@
         function startQuizNow() {
             document.getElementById('covenant-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
+            userScores = { fire: 0, water: 0, dark: 0, earth: 0 };
+            currentQuestionIndex = 0;
             loadQuestion();
         }
 
@@ -502,46 +1136,218 @@
             if(currentQuestionIndex >= quizData.length) { showResult(); return; }
             const progressPercent = (currentQuestionIndex / quizData.length) * 100;
             document.getElementById('progress-fill').style.width = progressPercent + "%";
-            
-            const qData = quizData[currentQuestionIndex][currentLang];
+
+            const qBlock = quizData[currentQuestionIndex];
+            const qData = qBlock[currentLang];
             document.getElementById('question-text').innerText = qData.q;
-            
+
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = "";
             qData.a.forEach((optionText, index) => {
                 const button = document.createElement('button');
                 button.className = "option-btn";
                 button.innerText = optionText;
-                button.onclick = () => { currentQuestionIndex++; loadQuestion(); };
+                button.onclick = () => {
+                    const element = qBlock.el[index];
+                    userScores[element]++;
+                    currentQuestionIndex++;
+                    loadQuestion();
+                };
                 optionsContainer.appendChild(button);
             });
         }
 
+        function computeFinalPersona() {
+            const order = ["fire", "water", "dark", "earth"];
+            let best = order[0];
+            order.forEach(key => { if (userScores[key] > userScores[best]) best = key; });
+            return best;
+        }
+
+        function applyPersonaToCert(personaKey) {
+            const p = personas[personaKey][currentLang];
+            const color = personaColors[personaKey];
+
+            document.getElementById('cert-main-h').innerText = p.certH;
+            document.getElementById('cert-persona-name').innerText = p.name;
+            document.getElementById('cert-persona-name').style.color = color;
+            document.getElementById('cert-final-desc').innerText = p.desc;
+            document.getElementById('cert-main-h').style.color = color;
+            document.getElementById('cert-user-name').style.color = color;
+            document.getElementById('cert-user-name').style.borderBottomColor = color;
+            document.getElementById('cert-stamp').style.color = color;
+            document.getElementById('cert-stamp').style.borderColor = color;
+
+            document.getElementById('story-emoji').innerText = personaEmoji[personaKey];
+            document.getElementById('story-title').innerText = translations[currentLang].storyTitle;
+            document.getElementById('story-persona').innerText = p.name;
+            document.getElementById('story-name').innerText = userName;
+            document.getElementById('story-footer').innerText = translations[currentLang].storyFooter;
+            document.getElementById('story-card').style.background = `radial-gradient(circle at 50% 30%, ${color}, #050505 85%)`;
+        }
+
         function showResult() {
+            finalPersona = computeFinalPersona();
+
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('lang-switcher-box').classList.add('hidden');
+            document.getElementById('live-counter-box').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
             document.getElementById('cert-user-name').innerText = userName;
-            document.getElementById('cert-main-h').innerText = translations[currentLang].certH;
-            document.getElementById('cert-final-desc').innerText = translations[currentLang].certDesc;
+            document.getElementById('cert-vip-badge').classList.toggle('hidden', selectedTier !== 'vip');
+            applyPersonaToCert(finalPersona);
+
+            saveToHistory();
+            fireConfetti();
+        }
+
+        function getHistory() {
+            const raw = localStorage.getItem('egoTestHistory');
+            if (!raw) return [];
+            try { return JSON.parse(raw); } catch (e) { return []; }
+        }
+
+        function saveToHistory() {
+            const history = getHistory();
+            history.unshift({
+                name: userName,
+                persona: finalPersona,
+                lang: currentLang,
+                tier: selectedTier,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('egoTestHistory', JSON.stringify(history.slice(0, 20)));
+            refreshHistoryButton();
+        }
+
+        function refreshHistoryButton() {
+            const btn = document.getElementById('btn-view-history');
+            if (!btn) return;
+            const history = getHistory();
+            btn.classList.toggle('hidden', history.length === 0);
+            document.getElementById('history-link-text').innerText = translations[currentLang].historyLinkText + ' (' + history.length + ')';
+        }
+
+        function showHistoryScreen() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('history-screen').classList.remove('hidden');
+            renderHistoryList();
+        }
+
+        function hideHistoryScreen() {
+            document.getElementById('history-screen').classList.add('hidden');
+            document.getElementById('welcome-screen').classList.remove('hidden');
+        }
+
+        function renderHistoryList() {
+            const list = document.getElementById('history-list');
+            const history = getHistory();
+            list.innerHTML = "";
+            if (history.length === 0) {
+                list.innerHTML = `<p style="color:#888;font-size:13px;">${translations[currentLang].historyEmpty}</p>`;
+                return;
+            }
+            history.forEach((item, index) => {
+                const dateStr = new Date(item.date).toLocaleDateString();
+                const el = document.createElement('div');
+                el.className = 'history-item';
+                el.onclick = () => loadHistoryItem(index);
+                el.innerHTML = `
+                    <div>
+                        <div class="history-item-name">${personaEmoji[item.persona]} ${item.name}</div>
+                        <div class="history-item-meta">${personas[item.persona][currentLang].name} · ${dateStr}${item.tier === 'vip' ? ' · VIP' : ''}</div>
+                    </div>
+                    <span style="color:#555;">→</span>
+                `;
+                list.appendChild(el);
+            });
+        }
+
+        function loadHistoryItem(index) {
+            const history = getHistory();
+            const item = history[index];
+            if (!item) return;
+
+            userName = item.name;
+            finalPersona = item.persona;
+            selectedTier = item.tier || 'standard';
+
+            document.getElementById('history-screen').classList.add('hidden');
+            document.getElementById('lang-switcher-box').classList.add('hidden');
+            document.getElementById('live-counter-box').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('btn-lock-trigger').classList.remove('hidden');
+            document.getElementById('btn-download').classList.remove('hidden');
+            document.getElementById('btn-story').classList.remove('hidden');
+            document.getElementById('viral-lock-box').classList.add('hidden');
+
+            document.getElementById('cert-user-name').innerText = userName;
+            document.getElementById('cert-vip-badge').classList.toggle('hidden', selectedTier !== 'vip');
+            applyPersonaToCert(finalPersona);
+        }
+
+        function fireConfetti() {
+            const colors = ['#ff4400', '#ffd700', '#10b981', '#3b82f6', '#a855f7', '#ffffff'];
+            const count = 90;
+            for (let i = 0; i < count; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                const duration = 2.5 + Math.random() * 2;
+                piece.style.animationDuration = duration + 's';
+                piece.style.animationDelay = (Math.random() * 0.6) + 's';
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), (duration + 1) * 1000);
+            }
         }
 
         function downloadCertificate() {
             const element = document.getElementById('certificate-print');
+            const btn = document.getElementById('btn-download');
+            const original = btn.innerText;
+            btn.innerHTML = '<span class="btn-spinner"></span> ...';
+            btn.disabled = true;
             html2canvas(element, { useCORS: true, allowTaint: true }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = userName + '_Ego_Certificate.png';
                 link.href = canvas.toDataURL();
                 link.click();
+                btn.innerText = original;
+                btn.disabled = false;
+            }).catch(() => {
+                btn.innerText = original;
+                btn.disabled = false;
+            });
+        }
+
+        function downloadStoryCard() {
+            const element = document.getElementById('story-card');
+            const btn = document.getElementById('btn-story');
+            const original = btn.innerText;
+            btn.innerHTML = '<span class="btn-spinner"></span> ...';
+            btn.disabled = true;
+            html2canvas(element, { useCORS: true, allowTaint: true, width: 1080, height: 1920 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = userName + '_Ego_Story.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                btn.innerText = original;
+                btn.disabled = false;
+            }).catch(() => {
+                btn.innerText = original;
+                btn.disabled = false;
             });
         }
 
         function triggerLockSystem() {
             document.getElementById('btn-lock-trigger').classList.add('hidden');
             document.getElementById('btn-download').classList.add('hidden');
+            document.getElementById('btn-story').classList.add('hidden');
             document.getElementById('viral-lock-box').classList.remove('hidden');
-            
+
             document.getElementById('lock-title').innerText = translations[currentLang].lockTitle;
             document.getElementById('lock-desc').innerText = translations[currentLang].lockDesc;
         }
@@ -549,12 +1355,12 @@
         function shareToFriend(platform) {
             shareCounter++;
             document.getElementById('share-count').innerText = shareCounter;
-            
+
             const shareText = encodeURIComponent("I passed the ultimate Ego Test! Try it yourself: " + window.location.href);
             let url = "";
             if(platform === 'whatsapp') url = "https://api.whatsapp.com/send?text=" + shareText;
             if(platform === 'telegram') url = "https://t.me/share/url?url=" + window.location.href + "&text=" + shareText;
-            
+
             window.open(url, '_blank');
 
             if(shareCounter >= 3) {
@@ -567,16 +1373,27 @@
                     document.getElementById('result-screen').classList.add('hidden');
                     document.getElementById('btn-lock-trigger').classList.remove('hidden');
                     document.getElementById('btn-download').classList.remove('hidden');
+                    document.getElementById('btn-story').classList.remove('hidden');
                     document.getElementById('lang-switcher-box').classList.remove('hidden');
+                    document.getElementById('live-counter-box').classList.remove('hidden');
                     document.getElementById('welcome-screen').classList.remove('hidden');
                     document.getElementById('name-input').value = "";
                     document.getElementById('hash-input').value = "";
-                    
+
                     document.getElementById('sticker-box').classList.remove('fade-out-effect');
                     switchLanguage(currentLang);
                 }, 1000);
             }
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initLiveCounter();
+            renderSampleCerts();
+            renderFAQ();
+            renderStreakWidget();
+            refreshHistoryButton();
+            detectVisitorCountry();
+        });
     </script>
 </body>
 </html>
